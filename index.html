@@ -6,7 +6,7 @@
   <title>Random Clock</title>
   <style>
     body{
-        background-color:rgb(59, 59, 121);
+        background-color:rgb(3, 3, 55);
       
     }
     #clock {
@@ -25,9 +25,13 @@
     .main{
         width: 1350px;
         height: 500px;
-        background-color: rgb(113, 113, 203);
+        background-color: rgb(3, 3, 55);
         margin: 100px;
-        border: 1px solid rgb(67, 67, 117);
+        box-shadow: 5px 5px 5px  black;
+    }
+
+    h1{
+      color: white;
     }
 
   </style>
@@ -37,22 +41,30 @@
     <h1>Random Clock</h1>
     <div class="container">
         <div class="main">
-            <div id="clock">00:00:00</div>
+            <div id="clock">00:00:00<p id="am"></p></div>
         </div>
        
     </div>
   
   <script>
     var clock = document.getElementById('clock');
+    let p = document.querySelector('#am');
 
     function updateClock() {
       var now = new Date();
-      var hours = now.getHours().toString().padStart(2, '0');
+      /*var hours = now.getHours().toString().padStart(2, '0');
       var minutes = now.getMinutes().toString().padStart(2, '0');
       var seconds = now.getSeconds().toString().padStart(2, '0');
-      var timeString = hours + ':' + minutes + ':' + seconds;
-
-     
+    
+      if(now.getHours()>12){
+        p.innerHTML = "PM";
+      }
+      else{
+        p.innerHTML = "AM";
+      }
+          */
+     // var timeString = hours + ':' + minutes + ':' + seconds +p.innerHTML;
+      
       var minX = 700;
       var minY = 450;
       var maxX = window.innerWidth - clock.offsetWidth;
@@ -71,8 +83,9 @@
       clock.style.transform = `translateZ(${Math.random()*80}px)`;
       clock.style.color = color;
 
-      clock.textContent = timeString;
-
+      clock.textContent = now.toLocaleTimeString();
+   // clock.textContent = timeString;
+    
      
       setTimeout(updateClock, 1000); 
     }
